@@ -24,9 +24,7 @@ const Id = () => {
     <>
       <div className="card">
         <h1>{count}</h1>
-        <button style={{ marginLeft: "10px" }} onClick={incerment}>
-          incerment
-        </button>
+        <button onClick={incerment}> incerment</button>
         <button onClick={decerment}> decrement </button>
       </div>
     </>
