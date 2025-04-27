@@ -4,26 +4,42 @@ import Loginemail from "./componets/Loginemail";
 import Otp from "./componets/Otp";
 import About from "./componets/About";
 import MainLayout from "./componets/MainLayout";
+import Public from "./componets/public";
+import Private from "./componets/Private";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Loginemail />} />
-      <Route path="/otp" element={<Otp />} />
+      <Route
+        path="/"
+        element={
+          <Public>
+            <Loginemail />
+          </Public>
+        }
+      />
+      <Route
+        path="/otp"
+        element={
+          <Public>
+            <Otp />
+          </Public>
+        }
+      />
       <Route
         path="/Home"
         element={
-          <MainLayout>
+          <Private>
             <Home />
-          </MainLayout>
+          </Private>
         }
       />
       <Route
         path="/About"
         element={
-          <MainLayout>
+          <Private>
             <About />
-          </MainLayout>
+          </Private>
         }
       />
     </Routes>
