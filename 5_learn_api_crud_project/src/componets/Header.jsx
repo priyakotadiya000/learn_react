@@ -15,12 +15,12 @@ const Header = () => {
     
 
   return (
-    <div className="container-fluid bg-black">
-      <header className="d-flex justify-content-center py-3  ">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div className="container-fluid justify-content-end">
               <button onClick={handleClick}>About</button>
               <button onClick={handleClickby}>Logout</button>
-      </header>
-    </div>
+        </div>
+      </nav>
   );
 };
 

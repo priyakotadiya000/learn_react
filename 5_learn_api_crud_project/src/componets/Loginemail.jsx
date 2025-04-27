@@ -7,12 +7,13 @@ const Loginemail = () => {
   const navigate = useNavigate();
 
   const handlesubmit = async () => {
-    const csrf = document.cookie.split("csrftoken=")[1]?.split(";")[0];
-    const xyz = await sendOtp(email, csrf);
+    const csrf = document.cookie.split('csrftoken=')[1]?.split(';')[0];
+    const otp_response = await sendOtp(email, csrf);
+
     localStorage.setItem("email", email);
-    if (xyz.status == 200) {
+    if (otp_response.status == 200) {
       navigate("/otp");
-      console.log("Status Code:", xyz.status == 200);
+      console.log("Status Code:", otp_response.status == 200);
     } else {
       alert("somthing is wrong");
     }

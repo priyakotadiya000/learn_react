@@ -1,7 +1,7 @@
 const Footer = () =>{
-    return <div className="container-fluid">
-    <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
-      <p className="col-md-4 mb-0 text-body-secondary text-center">&copy; 2025 Company, Inc</p>
+    return <div className="container-fluid fixed-bottom text-center">
+    <footer className="border-top">
+      <p>&copy; 2025 Company, Inc</p>
      </footer>
   </div>
   

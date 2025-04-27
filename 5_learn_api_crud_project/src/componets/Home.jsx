@@ -1,11 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { getUser } from "../Api";
-import MainLayout from "./MainLayout";
-
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -13,13 +8,12 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const accesstoken = localStorage.getItem("access_token");
-  
-     if (!accesstoken) {
+
+    if (!accesstoken) {
       navigate("/");
       localStorage.clear();
-    };
+    }
   }, []);
-
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -38,25 +32,11 @@ const Home = () => {
   }, []);
 
   return (
-    // <div>
-    //   <Header></Header>
-    //   <Sidebar></Sidebar>
-    //   <Footer></Footer>
-    //   <hr />
-
-    // </div>
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-    <Header />
-
-    <div style={{ display: "flex", flex: 1 }}>
-      <Sidebar />
-      <h2>Welcome Home page</h2>
+    <div>
+      <h2>Welcome Home</h2>
       <pre>{JSON.stringify(user, null, 2)}</pre>
-      <MainLayout />
+      {/* <FooterMenu /> */}
     </div>
-
-    <Footer />
-  </div>
   );
 };
 
