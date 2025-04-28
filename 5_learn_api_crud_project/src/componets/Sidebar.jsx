@@ -35,7 +35,7 @@ const Sidebar = () =>{
 
 
   const handle = () =>{
-    navigate("/Crateproject")
+    navigate("/CreateProject")
 
   }
     return <> 
@@ -77,7 +77,7 @@ const Sidebar = () =>{
           </li>
         ))}
 
-        
+
       </ul>
       <button onClick={handle}>Create Project</button>
 

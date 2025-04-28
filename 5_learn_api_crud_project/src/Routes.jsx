@@ -6,6 +6,8 @@ import About from "./componets/About";
 import MainLayout from "./componets/MainLayout";
 import Public from "./componets/public";
 import Private from "./componets/Private";
+import ProjectDetail from "./componets/Projectdetalis";
+import CreateProject from "./componets/createproject";
 
 const AppRoutes = () => {
   return (
@@ -42,7 +44,26 @@ const AppRoutes = () => {
           </Private>
         }
       />
+    <Route
+        path="/project/:id"
+        element={
+          <Private>
+            <ProjectDetail />
+          </Private>
+        }
+      />
+      <Route
+        path="/createproject"
+        element={
+          <Private>
+            <CreateProject />
+          </Private>
+        }
+      />
+
+
     </Routes>
+    
   );
 };
 

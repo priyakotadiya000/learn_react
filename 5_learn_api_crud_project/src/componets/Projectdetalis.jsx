@@ -1,12 +1,14 @@
 // src/components/ProjectDetail.jsx
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getProjectById, updateProject, deleteProject } from "../Api";
+import { getProjectById,updateProject,deleteProject } from "../Api";
+ 
 
-
-const ProjectDetails = () => {
-  const { id } = useParams();
-  const [project, setProject] = useState(null);
+const ProjectDetail = () => {
+  const navigate = useNavigate();
+  const [project,setProject]=useState();
+  const [loading,setLoading]=useState();
+ const { id } = useParams();
   const [formData, setFormData] = useState({
     project_name: "",
     address: "",
@@ -14,14 +16,12 @@ const ProjectDetails = () => {
     project_logo: null,
   });
   const [logoPreview, setLogoPreview] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("access_token");
   const csrfToken = localStorage.getItem("csrf_token");
 
   useEffect(() => {
-    const fetchProject = async () => {
+    const fProject = async () => {
       try {
         const response = await getProjectById(id, accessToken, csrfToken);
         if (!response.ok) {
@@ -38,7 +38,9 @@ const ProjectDetails = () => {
         });
 
         if (data.data.project_logo) {
-          setLogoPreview(`https://realtybudget.eitaa.in${data.data.project_logo}`);
+          setLogoPreview(
+            `https://realtybudget.eitaa.in${data.data.project_logo}`
+          );
         }
       } catch (error) {
         console.error("Fetch error:", error);
@@ -46,9 +48,11 @@ const ProjectDetails = () => {
         setLoading(false);
       }
     };
+    fProject();
 
-    fetchProject();
   }, [id, accessToken, csrfToken]);
+
+
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -60,7 +64,6 @@ const ProjectDetails = () => {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
-
   const handleUpdate = async () => {
     const form = new FormData();
     form.append("project_name", formData.project_name);
@@ -77,7 +80,7 @@ const ProjectDetails = () => {
       const res = await response.json();
       alert("Project updated successfully!");
       console.log("Update response:", res);
-      await fetchProjects(); // ✅ Refresh sidebar
+      // await fetchProjects(); 
       navigate("/home");
 
     } catch (err) {
@@ -94,68 +97,44 @@ const ProjectDetails = () => {
       if (!response.ok) throw new Error("Delete failed");
   
       alert("Project deleted successfully!");
-      await fetchProjects(); // ✅ Refresh sidebar
+      // await fetchProjects(); // ✅ Refresh sidebar
       navigate("/home");
     } catch (err) {
       console.error("Delete error:", err);
       alert("Error deleting project.");
     }
   };
-  
+ 
+
+
   return (
     <div className="container mt-4">
-      <h2 className="mb-3">Project Detail</h2>
-      {loading ? (
-        <p>Loading project data...</p>
-      ) : project ? (
-        <form className="row g-3">
-          <div className="col-md-6">
-            <label htmlFor="project_name" className="form-label">
-              Project Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="project_name"
-              name="project_name"
-              value={formData.project_name}
-              onChange={handleChange}
-            />
-          </div>
+      <h2 className="mb-3">Project Detail </h2>
 
-          <div className="col-md-6">
-            <label htmlFor="address" className="form-label">
-              Address
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="col-12">
-            <label htmlFor="description" className="form-label">
-              Description
-            </label>
-            <textarea
-              className="form-control"
-              id="description"
-              name="description"
-              rows="3"
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-          </div>
-
-          <div className="col-12">
-            <label htmlFor="project_logo" className="form-label">
-              Project Logo
-            </label>
-            <input
+      {/* {loading ? (<p>Loading project data...</p>) : project ? ( <pre style={{ backgroundColor: "#f8f9fa", padding: "15px",borderRadius: "5px",  }} >
+          {JSON.stringify(project, null, 2)}
+        </pre>
+        
+      ) : (
+        <p>Project not found or failed to load.</p>
+        
+      )
+      } */}
+      <div>
+          <label htmlFor="">project name</label>
+          <input type="text" value={formData.project_name} name="project_name" onChange={handleChange}/>
+      </div>
+      <div>
+          <label htmlFor="">Address</label>
+          <input type="text" value={formData.address}  name="address" onChange={handleChange}/>
+      </div>
+      <div>
+          <label htmlFor="">Description</label>
+          <input type="text" value={formData.description} name="description" onChange={handleChange}/>
+      </div>
+      <div>
+          <label htmlFor="">project Logo</label>
+          <input
               type="file"
               className="form-control"
               id="project_logo"
@@ -172,9 +151,9 @@ const ProjectDetails = () => {
                 />
               </div>
             )}
-          </div>
+      </div>
 
-          <div className="col-12">
+      <div className="col-12">
             <button
               type="button"
               className="btn btn-primary"
@@ -191,12 +170,8 @@ const ProjectDetails = () => {
             </button>
 
           </div>
-        </form>
-      ) : (
-        <p>Project not found or failed to load.</p>
-      )}
     </div>
   );
 };
 
-export default ProjectDetails;
+export default ProjectDetail;

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProject as createProjectAPI } from "../Api";
-import { useProjectContext } from "../context/ProjectContext";
 
 const CreateProject = () => {
   const navigate = useNavigate();
-  const { fetchProjects } = useProjectContext();
+  const [logoPreview, setLogoPreview] = useState(null);
+  const [loading,setLoading] = useState();
 
   const [formData, setFormData] = useState({
     project_name: "",
@@ -15,9 +15,6 @@ const CreateProject = () => {
     description: "",
     project_logo: null,
   });
-
-  const [logoPreview, setLogoPreview] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const csrfToken = document.cookie.split("csrftoken=")[1]?.split(";")[0];
   const accessToken = localStorage.getItem("access_token");
@@ -54,23 +51,20 @@ const CreateProject = () => {
     }
 
     try {
-      setLoading(true);
       const response = await createProjectAPI(data, accessToken, csrfToken);
       const json = await response.json();
 
       if (response.ok && json.success === 1) {
         alert("Project created successfully!");
-        navigate(`/project/${json.data.id}`);
-        await fetchProjects(); // ✅ Refresh sidebar
+        // navigate(`/project/${json.data.id}`);
+        navigate('/home')
       } else {
         alert("Failed to create project.");
       }
     } catch (err) {
       console.error("Create error:", err);
       alert("Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
+     } 
   };
 
   return (
