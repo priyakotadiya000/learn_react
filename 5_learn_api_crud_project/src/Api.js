@@ -35,3 +35,14 @@ export const getUser = async (accessToken, csrfToken) => {
   });
 };
 
+export const getProjxList = async (accessToken, csrfToken) => {
+  return fetch(`${BASE}/project/api/list/`, {
+    method: "GET",
+    headers: {
+      "CAuthorization": `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+      accept: "application/json",
+    },
+  });
+};
+
