@@ -94,3 +94,35 @@ export const deleteProject = async (id, accessToken, csrfToken) => {
 };
 
 
+export const createTag = async (formData, csrfToken, accessToken) => {
+  try {
+    const response = await fetch(`${BASE}/tag/api/create/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRFToken": csrfToken,
+        "CAuthorization": `Bearer ${accessToken}`,  // Include Bearer token
+        accept: "application/json",
+      },
+      body: formData.toString(),  // Send the formData
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error creating tag:", error);
+    throw error;
+  }
+};
+
+export const getTagsByProject = async (projectId, csrfToken, accessToken) => {
+  return fetch(`${BASE}/tag/api/list/?project=${projectId}`, {
+    method: "GET",
+    headers: {
+      "X-CSRFToken": csrfToken,
+      "CAuthorization": `Bearer ${accessToken}`,
+      accept: "application/json",
+    },
+  });
+};
+
+

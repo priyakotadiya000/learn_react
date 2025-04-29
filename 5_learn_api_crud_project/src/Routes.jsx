@@ -8,6 +8,8 @@ import Public from "./componets/public";
 import Private from "./componets/Private";
 import ProjectDetail from "./componets/Projectdetalis";
 import CreateProject from "./componets/createproject";
+import Taglist from "./componets/Taglist";
+import CreateTag from "./componets/CreateTag";
 
 const AppRoutes = () => {
   return (
@@ -60,7 +62,22 @@ const AppRoutes = () => {
           </Private>
         }
       />
-
+       <Route
+        path="/project/:id/Taglist"
+        element={
+          <Private>
+            <Taglist />
+          </Private>
+        }
+      />
+       <Route
+        path="/createTag"
+        element={
+          <Private>
+            <CreateTag/>
+          </Private>
+        }
+      />
 
     </Routes>
     

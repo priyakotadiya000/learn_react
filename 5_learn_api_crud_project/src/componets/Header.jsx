@@ -16,23 +16,25 @@ const Header = () => {
  
     }
     const handleTagButton = () => {
-      alert("Tag Button Clicked!");
-      // Ya navigate kar sakte ho kahin bhi:
-      // navigate('/tag-create')
+       navigate("/project/:id/Taglist")
   };
 
 
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container-fluid justify-content-end">
-              
-              <button onClick={handleClick}>About</button>
-              <button onClick={handleClickby}>Logout</button>
-              {location.pathname.startsWith("/project/") && (
+        {(location.pathname.startsWith("/project/") || 
+            location.pathname.startsWith("/Taglist") || 
+            location.pathname === "/createTag") && (
           <button onClick={handleTagButton} className="btn btn-success">
-            + Tag Name
+             Tag
           </button>
         )}
+        
+
+              <button onClick={handleClick}>About</button>
+              <button onClick={handleClickby}>Logout</button>
+              
         </div>
       </nav>
   );

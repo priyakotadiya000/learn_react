@@ -52,8 +52,7 @@ const ProjectDetail = () => {
 
   }, [id, accessToken, csrfToken]);
 
-
-
+    
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "project_logo") {

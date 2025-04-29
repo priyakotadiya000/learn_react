@@ -7,7 +7,7 @@ import { createProject as createProjectAPI } from "../Api";
 const CreateProject = () => {
   const navigate = useNavigate();
   const [logoPreview, setLogoPreview] = useState(null);
-  const [loading,setLoading] = useState();
+  const [loading,setLoading] = useState()
 
   const [formData, setFormData] = useState({
     project_name: "",

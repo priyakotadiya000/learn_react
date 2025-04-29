@@ -38,6 +38,10 @@ const Sidebar = () =>{
     navigate("/CreateProject")
 
   }
+  const  handleclick =(e)=>{
+     console.log(e)
+     localStorage.setItem("selected_project_id",e)
+  }
     return <> 
                      <div
       className="bg-light border-end p-3 position-fixed overflow-auto"
@@ -63,7 +67,7 @@ const Sidebar = () =>{
         <li className="nav-item mt-4 fw-bold">📁 Projects</li>
         {projects.map((project) => (
           <li key={project.id} className="nav-item mb-2 d-flex align-items-center">
-            <Link to={`/project/${project.id}`} className="nav-link p-0">
+            <Link to={`/project/${project.id}`} onClick = {(e)=>{handleclick(project.id)}}className="nav-link p-0">
               <img
                 src={project.project_logo || "https://cdn-icons-png.flaticon.com/24/2991/2991112.png"}
                 alt="logo"
