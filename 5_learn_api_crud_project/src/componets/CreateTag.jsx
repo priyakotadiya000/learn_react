@@ -11,8 +11,6 @@ const CreateTag = () =>{
 
 
     
-
-
       const handleTagNameChange = (e) => {
         setTagName(e.target.value);
        };
@@ -43,7 +41,7 @@ const CreateTag = () =>{
     
           if (response.ok) {
             // navigate(`/project/${id}/tagslist`);
-              navigate("/project/:id/Taglist")
+              navigate("/project/id/Taglist")
           } else {
             const data = await response.json();
             // setError(data.message || "Failed to create tag");

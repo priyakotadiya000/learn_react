@@ -126,3 +126,47 @@ export const getTagsByProject = async (projectId, csrfToken, accessToken) => {
 };
 
 
+export const deleteTag = async (tagId, csrfToken, accessToken) => {
+  return fetch(`${BASE}/tag/api/delete/${tagId}/`, {
+    method: "DELETE",
+    headers: {
+      "accept": "application/json",
+      "CAuthorization": `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    },
+  });
+};
+
+export const updateTag = async (tagId, formData, csrfToken, accessToken) => {
+  return fetch(`${BASE}/tag/api/update/${tagId}/`, {
+    method: "PUT",
+    headers: {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "CAuthorization": `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    },
+    body: formData, 
+  });
+};
+
+
+
+export const getTag = async (tagId, projectId, csrfToken, accessToken) => {
+  return fetch(`${BASE}/tag/api/get/${tagId}/?project=${projectId}`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      CAuthorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    },
+  });
+};
+
+
+
+
+
+
+
+

@@ -16,7 +16,7 @@ const Header = () => {
  
     }
     const handleTagButton = () => {
-       navigate("/project/:id/Taglist")
+       navigate("/project/id/Taglist")
   };
 
 
@@ -30,7 +30,12 @@ const Header = () => {
              Tag
           </button>
         )}
-        
+        {(location.pathname.startsWith("/project/") || 
+  location.pathname === "/createContributor") && (
+  <button  className="btn btn-primary">
+    Contributor
+  </button>
+)}
 
               <button onClick={handleClick}>About</button>
               <button onClick={handleClickby}>Logout</button>

@@ -3,13 +3,13 @@ import Home from "./componets/Home";
 import Loginemail from "./componets/Loginemail";
 import Otp from "./componets/Otp";
 import About from "./componets/About";
-import MainLayout from "./componets/MainLayout";
 import Public from "./componets/public";
 import Private from "./componets/Private";
 import ProjectDetail from "./componets/Projectdetalis";
 import CreateProject from "./componets/createproject";
 import Taglist from "./componets/Taglist";
 import CreateTag from "./componets/CreateTag";
+import Updatetag from "./componets/Updatetag";
 
 const AppRoutes = () => {
   return (
@@ -63,7 +63,7 @@ const AppRoutes = () => {
         }
       />
        <Route
-        path="/project/:id/Taglist"
+        path="/project/id/Taglist"
         element={
           <Private>
             <Taglist />
@@ -75,6 +75,14 @@ const AppRoutes = () => {
         element={
           <Private>
             <CreateTag/>
+          </Private>
+        }
+      />
+       <Route
+        path="/updatetag"
+        element={
+          <Private>
+            <Updatetag/>
           </Private>
         }
       />

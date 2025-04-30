@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { getTagsByProject } from "../Api";
+import { getTagsByProject ,deleteTag} from "../Api";
 import { useState,useEffect } from "react";
 
 
@@ -38,7 +38,7 @@ const Taglist = () =>{
             console.log(error)
             handleError(error);
           } finally {
-            setIsLoading(false);
+            // setIsLoading(false);
           }
         };
     
@@ -49,7 +49,28 @@ const Taglist = () =>{
     const handleclick = () => {
         navigate("/CreateTag") 
    };
+    
+   const handleDeleteTag = async (tagId) => {
+    const { csrfToken, accessToken } = getTokens();
+    if (!window.confirm("Delete this tag?")) return;
+    try {
+      const response = await deleteTag(tagId, csrfToken, accessToken);
+      if (response.ok) {
+        setTags(tags.filter(tag => tag.id !== tagId));
+      } else {
+        setError("Failed to delete tag.");
+      }
+    } catch (error) {
+      handleError(error);
+    }
+  };
+       
 
+      const updatebutton  = (tagId) =>{
+        localStorage.setItem("tag_id", tagId);
+        navigate("/updateTag");
+        console.log(tagId)
+        }
 
     
     return (
@@ -73,7 +94,8 @@ const Taglist = () =>{
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Actions</th>
-                  </tr>
+
+            </tr>
                 </thead>
                 <tbody>
                   {tags.length > 0 ? (
@@ -83,9 +105,18 @@ const Taglist = () =>{
                         <td>{tag.description}</td>
                         <td>{new Date(tag.created_at).toLocaleString()}</td>
                         <td>{new Date(tag.updated_at).toLocaleString()}</td>
+                        
                         <td>
-                         
-                        </td>
+                        <button className="btn btn-sm btn-warning" onClick={() => updatebutton(tag.id)}>
+                           Edit
+                       </button>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => handleDeleteTag(tag.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                       </tr>
                     ))
                   ) : (
