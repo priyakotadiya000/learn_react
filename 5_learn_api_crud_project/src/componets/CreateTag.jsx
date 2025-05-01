@@ -10,8 +10,7 @@ const CreateTag = () =>{
      const projectid = localStorage.getItem("selected_project_id")
 
 
-    
-      const handleTagNameChange = (e) => {
+       const handleTagNameChange = (e) => {
         setTagName(e.target.value);
        };
 
@@ -40,14 +39,11 @@ const CreateTag = () =>{
           const response = await createTag(formData, csrfToken, accessToken);
     
           if (response.ok) {
-            // navigate(`/project/${id}/tagslist`);
               navigate("/project/id/Taglist")
           } else {
             const data = await response.json();
-            // setError(data.message || "Failed to create tag");
           }
         } catch (error) {
-        //   setError(error.message || "An error occurred while creating the tag.");
         } 
       };
     

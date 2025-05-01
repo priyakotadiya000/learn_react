@@ -164,9 +164,63 @@ export const getTag = async (tagId, projectId, csrfToken, accessToken) => {
 };
 
 
+export const createContributor = async (formData, csrfToken, accessToken) => {
+  return fetch(`${BASE}/contributor/api/create/`, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      CAuthorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    },
+    body: formData
+  });
+};
 
 
 
+export const getContributors = async (projectId, csrfToken, accessToken) => {
+  return fetch(`${BASE}/contributor/api/list/?project=${projectId}`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      CAuthorization: `Bearer ${accessToken}`, // If API requires "CAuthorization"
+      "X-CSRFToken": csrfToken,
+    },
+  });
+};
 
+export const deleteContributor = async (id, csrfToken, accessToken) => {
+  return fetch(`${BASE}/contributor/api/delete/${id}/`, {
+    method: "DELETE",
+    headers: {
+      "accept": "application/json",
+      "CAuthorization": `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    }
+  });
+};
+
+export const getContributorById = async (contributorId, projectId, csrfToken, accessToken) => {
+  const response = await fetch(`${BASE}/contributor/api/get/${contributorId}/?project=${projectId}`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      CAuthorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    },
+  });
+  return response.json();
+};
+
+export const updateContributor = async (contributorId, formData, csrfToken, accessToken) => {
+  return fetch(`${BASE}/contributor/api/update/${contributorId}/`, {
+    method: "PUT",
+    headers: {
+      CAuthorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken,
+    },
+    body: formData,
+  });
+};
 
 

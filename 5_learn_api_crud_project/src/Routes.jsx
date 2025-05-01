@@ -10,6 +10,9 @@ import CreateProject from "./componets/createproject";
 import Taglist from "./componets/Taglist";
 import CreateTag from "./componets/CreateTag";
 import Updatetag from "./componets/Updatetag";
+import Contributor from "./componets/Contributor";
+import CreateContributor from "./componets/createcontributor";
+import Updatecontributor from "./componets/updatecontributor";
 
 const AppRoutes = () => {
   return (
@@ -47,7 +50,7 @@ const AppRoutes = () => {
         }
       />
     <Route
-        path="/project/:id"
+        path="/project/:project_id"
         element={
           <Private>
             <ProjectDetail />
@@ -83,6 +86,32 @@ const AppRoutes = () => {
         element={
           <Private>
             <Updatetag/>
+          </Private>
+        }
+      />
+          <Route
+        path="/Contributor"
+        element={
+          <Private>
+             <Contributor/>
+          </Private>
+        }
+      />
+
+        <Route
+        path="/CreateContributor"
+        element={
+          <Private>
+             <CreateContributor/>
+          </Private>
+        }
+      />
+
+      <Route
+        path="/updateContributor"
+        element={
+          <Private>
+             <Updatecontributor/>
           </Private>
         }
       />

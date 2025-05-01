@@ -57,7 +57,7 @@ const CreateProject = () => {
       if (response.ok && json.success === 1) {
         alert("Project created successfully!");
         // navigate(`/project/${json.data.id}`);
-        navigate('/home')
+        navigate('/contributor')
       } else {
         alert("Failed to create project.");
       }

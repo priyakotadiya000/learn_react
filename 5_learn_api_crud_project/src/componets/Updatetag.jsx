@@ -45,7 +45,7 @@ const Updatetag = () => {
 const handleUpdate = async (e) => {
     e.preventDefault();
   
-    const formData = new URLSearchParams(); // ✅ FIXED
+    const formData = new URLSearchParams(); 
     formData.append("tag_name", tagName);
     formData.append("description", description);
     formData.append("project", projectId);
@@ -61,7 +61,7 @@ const handleUpdate = async (e) => {
       }
   
       alert("Project updated successfully!");
-      navigate("/home");
+      navigate("/project/id/Taglist");
   
     } catch (err) {
       console.error("Update error:", err);

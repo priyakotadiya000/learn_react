@@ -1,47 +1,44 @@
-import { useNavigate ,useLocation} from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
-    const navigate = useNavigate();
-    const location = useLocation(); // Current path milta hai
+  const navigate = useNavigate();
+  const location = useLocation(); // Current path milta hai
 
-
-    const handleClick = () => {
-      navigate("/about");
-     };
-    
-    const handleClickby = () =>{
-      navigate("/")
-      localStorage.clear();
- 
-    }
-    const handleTagButton = () => {
-       navigate("/project/id/Taglist")
+  const handleClick = () => {
+    navigate("/about");
   };
 
+  const handleClickby = () => {
+    navigate("/");
+    localStorage.clear();
+  };
+  const handleTagButton = () => {
+    navigate("/project/id/Taglist");
+  };
+
+  const handlecontributor = () =>{
+      navigate("/contributor")
+  }
 
   return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div className="container-fluid justify-content-end">
-        {(location.pathname.startsWith("/project/") || 
-            location.pathname.startsWith("/Taglist") || 
-            location.pathname === "/createTag") && (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div className="container-fluid justify-content-end">
+        {(location.pathname.startsWith("/project/") ||
+          location.pathname.startsWith("/Taglist") ||
+          location.pathname === "/createTag") && (
           <button onClick={handleTagButton} className="btn btn-success">
-             Tag
+            Tag
           </button>
         )}
-        {(location.pathname.startsWith("/project/") || 
-  location.pathname === "/createContributor") && (
-  <button  className="btn btn-primary">
-    Contributor
-  </button>
-)}
+        {(location.pathname.startsWith("/project/") ||
+          location.pathname === "/createContributor") && (
+          <button onClick={handlecontributor} className="btn btn-primary">Contributor</button>
+        )}
 
-              <button onClick={handleClick}>About</button>
-              <button onClick={handleClickby}>Logout</button>
-              
-        </div>
-      </nav>
+        <button onClick={handleClick}>About</button>
+        <button onClick={handleClickby}>Logout</button>
+      </div>
+    </nav>
   );
 };
 

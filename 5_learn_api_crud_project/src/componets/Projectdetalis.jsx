@@ -6,9 +6,9 @@ import { getProjectById,updateProject,deleteProject } from "../Api";
 
 const ProjectDetail = () => {
   const navigate = useNavigate();
-  const [project,setProject]=useState();
+  // const [project,setProject]=useState();
   const [loading,setLoading]=useState();
- const { id } = useParams();
+ const { project_id } = useParams();
   const [formData, setFormData] = useState({
     project_name: "",
     address: "",
@@ -23,12 +23,12 @@ const ProjectDetail = () => {
   useEffect(() => {
     const fProject = async () => {
       try {
-        const response = await getProjectById(id, accessToken, csrfToken);
+        const response = await getProjectById(project_id, accessToken, csrfToken);
         if (!response.ok) {
           throw new Error("Failed to fetch project");
         }
         const data = await response.json();
-        setProject(data.data);
+        // setProject(data.data);
 
         setFormData({
           project_name: data.data.project_name || "",
