@@ -50,7 +50,7 @@ const ProjectDetail = () => {
     };
     fProject();
 
-  }, [id, accessToken, csrfToken]);
+  }, [project_id, accessToken, csrfToken]);
 
     
   const handleChange = (e) => {

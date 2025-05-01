@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { createTag } from "../Api";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateTag = () =>{
-   
-     const navigate = useNavigate();
+  const { id } = useParams(); 
+  const navigate = useNavigate();
     const [tagName, setTagName] = useState("");
      const [description, setDescription] = useState("");
-     const projectid = localStorage.getItem("selected_project_id")
+     const projectid = id
 
 
        const handleTagNameChange = (e) => {

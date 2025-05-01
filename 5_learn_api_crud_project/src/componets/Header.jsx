@@ -1,8 +1,9 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useMatch } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation(); // Current path milta hai
+  const matchProjectDetail = useMatch("/project/:project_id/*");
 
   const handleClick = () => {
     navigate("/about");
@@ -13,7 +14,8 @@ const Header = () => {
     localStorage.clear();
   };
   const handleTagButton = () => {
-    navigate("/project/id/Taglist");
+
+    navigate(`/project/${matchProjectDetail.params.project_id}/taglist`);
   };
 
   const handlecontributor = () =>{

@@ -66,7 +66,7 @@ const AppRoutes = () => {
         }
       />
        <Route
-        path="/project/id/Taglist"
+        path="/project/:id/taglist"
         element={
           <Private>
             <Taglist />
@@ -74,7 +74,7 @@ const AppRoutes = () => {
         }
       />
        <Route
-        path="/createTag"
+        path="/project/:id/tag/create"
         element={
           <Private>
             <CreateTag/>
@@ -82,7 +82,7 @@ const AppRoutes = () => {
         }
       />
        <Route
-        path="/updatetag"
+        path="/project/:id/tag/:tag_id/update"
         element={
           <Private>
             <Updatetag/>

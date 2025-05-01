@@ -83,7 +83,7 @@ const Contributor = () => {
           </tr>
         </thead>
         <tbody>
-          {contributors.length > 0 ? (
+          {contributors && contributors.length > 0 ? (
             contributors.map((c) => (
               <tr key={c.id}>
                 <td>{c.name}</td>

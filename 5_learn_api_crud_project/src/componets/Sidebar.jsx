@@ -78,6 +78,7 @@ const Sidebar = () =>{
               />
               {project.project_name}
             </Link>
+           
           </li>
         ))}
 

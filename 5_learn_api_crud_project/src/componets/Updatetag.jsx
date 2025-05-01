@@ -1,19 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getTag,updateTag } from "../Api"; // Make sure `update` is also imported
 
 const Updatetag = () => {
   const navigate = useNavigate();
-//   const { tagId } = useParams(); // tagId from the URL
+  const { tag_id } = useParams(); // tagId from the URL
+  const { id } = useParams(); // tagId from the URL
+  
   const [tagName, setTagName] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const projectId = localStorage.getItem("selected_project_id");
+  const projectId = id
   const csrfToken = localStorage.getItem("csrf_token");
   const accessToken = localStorage.getItem("access_token");
   
-  const tagId = localStorage.getItem("tag_id");
+  const tagId = tag_id
 
 
 

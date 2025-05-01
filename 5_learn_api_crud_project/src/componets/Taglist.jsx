@@ -1,13 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { getTagsByProject ,deleteTag} from "../Api";
 import { useState,useEffect } from "react";
 
 
 const Taglist = () =>{
-
+    const { id } = useParams(); 
     const navigate = useNavigate()
-    const [tags, setTags] = useState([]); // Initialize tags as an empty array
-    //  const [error, setError] = useState(null);
+    const [tags, setTags] = useState([]); 
      const projectid = localStorage.getItem("selected_project_id")
 
       
@@ -43,11 +42,11 @@ const Taglist = () =>{
         };
     
         fetchTags();
-      }, [projectid]);
+      }, [id]);
     
 
     const handleclick = () => {
-        navigate("/CreateTag") 
+        navigate(`/project/${id}/tag/create`) 
    };
     
    const handleDeleteTag = async (tagId) => {
@@ -67,8 +66,8 @@ const Taglist = () =>{
        
 
       const updatebutton  = (tagId) =>{
-        localStorage.setItem("tag_id", tagId);
-        navigate("/updateTag");
+        // localStorage.setItem("tag_id", tagId);
+        navigate(`/project/${id}/tag/${tagId}/update`);
         console.log(tagId)
         }
 
@@ -81,7 +80,7 @@ const Taglist = () =>{
           {/* {error && <div className="alert alert-danger">{error}</div>} */}
     
           <button onClick={handleclick} className="btn btn-primary mb-3">
-            ➕ Create Tag
+            ➕Create Tag
           </button>
     
          
